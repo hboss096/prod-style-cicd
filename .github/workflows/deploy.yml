@@ -1,0 +1,27 @@
+name: Safe Deploy with Rollback
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy new version
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ec2-user
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -e
+            cp -r app/* /var/www/app/releases/v2/
+            ln -sfn /var/www/app/releases/v2 /var/www/app/current
+            curl -f http://localhost || exit 1
+            sudo systemctl restart nginx
+
