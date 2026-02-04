@@ -1,0 +1,10 @@
+# Terraform generated files (NEVER commit these)
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# OS / editor junk
+.DS_Store
+*.log
+
