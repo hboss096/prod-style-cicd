@@ -20,8 +20,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             set -e
-            cp -r app/* /var/www/app/releases/v2/
-            ln -sfn /var/www/app/releases/v2 /var/www/app/current
+            sudo cp -r app/* /var/www/app/releases/v2/
+            sudo ln -sfn /var/www/app/releases/v2 /var/www/app/current
             curl -f http://localhost || exit 1
             sudo systemctl restart nginx
 
