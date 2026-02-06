@@ -1,4 +1,4 @@
-# Production-Style CI/CD Platform (AWS Free Tier)
+# Production-Style CI/CD Platform
 
 ## Overview
 Built a production-style deployment pipeline with automated health checks and rollback capability.
